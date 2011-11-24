@@ -17,3 +17,6 @@ Chapter4.prototype.range = function(number) {
 	}
 	return array;
 };
+Chapter4.prototype.joinAndSplit = function(array) {
+	return array.join(" ").split(" ");
+};
