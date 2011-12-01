@@ -142,9 +142,30 @@ describe("Chapter 4", function() {
 		expect(actual).toEqual([ "eric", "n'est", "pas", "fort" ]);
 	});
 
-	it("shoud implement startswith", function() {
+	it("shoud explain charAt and slice", function() {
 		var paragraph = "born 15-11-2003 (mother Spot): White Fang";
 		expect(paragraph.charAt(0) == "b" && paragraph.charAt(1) == "o" && paragraph.charAt(2) == "r"
 				&& paragraph.charAt(3) == "n").toBeTruthy();
-	})
+		expect(paragraph.slice(0, 4)).toEqual("born");
+	});
+
+	it("#4.4 shoud implement startswith", function() {
+		expect(chapter4.startsWith("E", "E")).toBeTruthy();
+		expect(chapter4.startsWith("E", "F")).toBeFalsy();
+		expect(chapter4.startsWith("Eric Le Merdy", "Eric")).toBeTruthy();
+		expect(chapter4.startsWith("Eric Le", "Eric Le Merdy")).toBeFalsy();
+	});
+
+	it("charAt and slice should not fail when called out of bound", function() {
+		expect("Pip".charAt(250)).toEqual("");
+		expect("Nop".slice(1, 250)).toEqual("op");
+	});
+
+	it("#4.5 shoud find cat names in a paragraph", function() {
+		expect(chapter4.catNames("born: garou, céline")).toEqual(["garou", "céline"]);
+	});
+
+	it("#4.6 shoud extract date from a paragraph", function() {
+		expect(chapter4.extractDate("died 27/04/2006: Black Leclère")).toEqual(new Date(2006, 4 - 1, 27));
+	});
 });
